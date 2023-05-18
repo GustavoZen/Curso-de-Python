@@ -69,13 +69,19 @@ def Maior_Inter_Menor(A,B,C):
 Maior_Inter_Menor(7,1,20)
 # ou 
 def Maior_Inter_Menor_Array():
-    tamanho = 3
     lista = []
-    for i in range(tamanho):
+    for i in range(3):
         elemento = input("Digite o elemento {}: ".format(i+1))
         lista.append(elemento)
-    lista.sort(reverse=1)
-    print("Maior: " + str(lista[0]) + "\nINTER: " + str(lista[1]) + "\nMENOR: " + str(lista[2]))
+
+    lista.sort()
+
+    maior = lista[2]
+    inter = lista[1]
+    menor = lista[0]
+
+    print("Maior: {}\nInter: {}\nMenor: {}".format(maior, inter, menor))
 Maior_Inter_Menor_Array()
+
 
     
