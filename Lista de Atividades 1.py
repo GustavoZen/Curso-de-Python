@@ -1,11 +1,12 @@
 
 #Faça um algoritmo que leia os valores A,B,C e imprima na tela se a a soma de A+B é menor que C
 def algoritmo(A,B,C):
-    if(C>(A+B)):
+    soma = A+B
+    if(soma<C):
         print(str(C) + " é maior que a soma de " + str(A) + " + " + str(B))
     else:
-        print(str(C) + " é menor que a soma de " + str(A) + " + " + str(B))
-algoritmo(1,2,10)
+        print(str(C) + " é menor ou igual que a soma de " + str(A) + " + " + str(B))
+algoritmo(1,5,4)
 
 #Encontrar o dobro de um número caso ele seja positivo e o seu triplo caso seja negativo, imprima o resultado
 def algoritmo2(A):
@@ -19,13 +20,12 @@ algoritmo2(-1)
 #-Para Homens: (72.7 * h) - 58
 #-Para Mulheres : (62.1 * h) - 44.7
 def Pesoideal(altura,sexo):
-    Peso_ideal = 0
     if(sexo == 'M'):
        Peso_ideal = (72.7 * altura) - 58
     else:
         Peso_ideal = (62.1 * altura) - 44.7
     return Peso_ideal
-print(Pesoideal(180,'M'))
+print("{:.2f}".format(Pesoideal(1.8,'M')))
 
 #Escreva um algoritmo que leia o número de identificação, as 3 notas obtidas por um aluno nas 3 verificações e a média dos exercícios que fazem parte da avaliação, e calcule a média de aproveitamento, usando a fórmula: MA = Nota1 + nota2 * 2 + nota3 * 3 + ME)/7
 def algoritmo3(Identificacao, nota1,nota2,nota3, ME):
@@ -82,6 +82,5 @@ def Maior_Inter_Menor_Array():
 
     print("Maior: {}\nInter: {}\nMenor: {}".format(maior, inter, menor))
 Maior_Inter_Menor_Array()
-
 
     
