@@ -1,7 +1,8 @@
 import os
 import random
+import LdFA
 
-
+resposta = 0
 velha =[
     [" "," "," ",],
     [" "," "," ",],
@@ -28,27 +29,19 @@ def tela():
     
 def verificaVitoriaLinha(s):
     global velha
-    somalinha = 0
     for l in range(3):
-        somalinha = 0
-        for c in range(3):
-            if velha[l][c] == s:
-                somalinha += 1
-            if somalinha >= 3:
+        if (velha[l][0] == s and velha[l][1] == s and velha[l][2] == s):
                 return s
-    return "n"
+        else:
+            return "n"
 
 def verificaVitoriaColuna(s):
     global velha
-    somacoluna = 0
     for c in range(3):
-        somacoluna = 0
-        for l in range(3):
-            if velha[l][c] == s:
-                somacoluna += 1
-            if somacoluna >= 3:
+        if (velha[0][c] == s and velha[1][c] == s and velha[2][c] == s):
                 return s
-    return "n"
+        else:
+            return "n"
                 
 def verificaVitoriaDiagonal(s):
     global velha
@@ -116,7 +109,6 @@ def CPUJoga():
     global player
     global maxJogadas
     simbolo = "O"
-    
     if jogadas < maxJogadas:
             l = random.randrange(0,3)
             c = random.randrange(0, 3)
@@ -128,19 +120,43 @@ def CPUJoga():
             jogadas += 1
     verificaVitoria(simbolo)      
         
+def reset():
+    global jogadas
+    global velha
+    global player
+    global vit
+    vit = "n"
+    player = 2
+    velha =[
+    [" "," "," ",],
+    [" "," "," ",],
+    [" "," "," ",]
+    ]
+    jogadas = 0
+
+def game():                 
+    while True:
+        tela()
+        if player == 2:
+            playerJoga()
+        else:
+            CPUJoga()
+            LdFA.Delay(0.5)
+        tela()
         
-while True:                 
-    tela()
-    if player == 2:
-        playerJoga()
-    else:
-        CPUJoga()
-    tela()
-    
-    if(vit != "n" or jogadas >= maxJogadas):
-        break
-print("FIM.")
-if vit == "X" or vit =="O":
-    print("Resultado: Jogador", vit, "Venceu! ")
-else:
-    print("Resultado empate.")
+        if(vit != "n" or jogadas >= maxJogadas):
+            print("FIM.")
+            if vit == "X" or vit =="O":
+                print("Resultado: Jogador", vit, "Venceu! ")
+                break
+            else:
+                print("Resultado empate.")
+                break
+
+game()
+resposta = input("Deseja Jogar Novamente?[y/n]")
+while resposta != "n" and resposta != "N":
+    LdFA.Delay(1)
+    reset()
+    game()
+    resposta = input("Deseja Jogar Novamente?[y/n]")
