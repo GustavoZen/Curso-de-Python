@@ -1,6 +1,7 @@
 import os
 import random
-import LdFA
+from LdFA import Delay
+from colorama import Fore
 
 resposta = 0
 velha =[
@@ -22,33 +23,45 @@ def tela():
     global velha
     global jogadas 
     os.system("cls")
-    print("     0   1   2")
-    print(" 0 |", velha[0][0], "|", velha[0][1], "|", velha[0][2],"|")
-    print(" 1 |", velha[1][0], "|", velha[1][1], "|", velha[1][2],"|")
-    print(" 2 |", velha[2][0], "|", velha[2][1], "|", velha[2][2],"|")
+    print(Fore.RESET, "     0     1     2")
+    for i in range(3):
+        print(f" {i} |",end = "")
+        for j in range(3):
+            if velha[i][j] == "X" and j != 2:
+                print(Fore.RED, f" {velha[i][j]}", Fore.RESET, "|", end = "")
+                Fore.RESET
+            elif velha[i][j] == "O" and j != 2:
+                print(Fore.GREEN, f" {velha[i][j]}", Fore.RESET, "|", end = "")
+                Fore.RESET
+            elif velha[i][j] == "X" and j == 2:
+                print(Fore.RED, f" {velha[i][j]}", Fore.RESET, "|", end = "")
+                Fore.RESET
+            elif velha[i][j] == "O" and j == 2:
+                print(Fore.GREEN, f" {velha[i][j]}", Fore.RESET, "|", end = "")
+                Fore.RESET
+            else:
+                print(Fore.RESET, "    |", end = "")
+        print("\n", end = "")
     
 def verificaVitoriaLinha(s):
     global velha
     for l in range(3):
         if (velha[l][0] == s and velha[l][1] == s and velha[l][2] == s):
                 return s
-        else:
-            return "n"
+    return "n"
 
 def verificaVitoriaColuna(s):
     global velha
     for c in range(3):
         if (velha[0][c] == s and velha[1][c] == s and velha[2][c] == s):
                 return s
-        else:
-            return "n"
+    return "n"
                 
 def verificaVitoriaDiagonal(s):
     global velha
     if (velha[0][0] == s and velha[1][1] == s and velha[2][2] == s) or (velha[2][0] == s and velha[1][1] == s and velha[0][2] == s):
         return s
-    else:
-        return "n"
+    return "n"
 
 def verificaVitoria(s):
     global velha
@@ -79,8 +92,7 @@ def player2Joga():
             print("linha ou coluna invalida!.!" )
             os.system("pause")
     verificaVitoria(simbolo)
-         
-         
+                 
 def playerJoga():
     global jogadas
     global player
@@ -102,8 +114,7 @@ def playerJoga():
             print("linha ou coluna invalida!.!" )
             os.system("pause")
     verificaVitoria(simbolo)
-         
-         
+                 
 def CPUJoga():
     global jogadas
     global player
@@ -118,7 +129,7 @@ def CPUJoga():
             velha[l][c] = simbolo
             player = 2
             jogadas += 1
-    verificaVitoria(simbolo)      
+    verificaVitoria(simbolo)
         
 def reset():
     global jogadas
@@ -141,7 +152,7 @@ def game():
             playerJoga()
         else:
             CPUJoga()
-            LdFA.Delay(0.5)
+            Delay(0.5)
         tela()
         
         if(vit != "n" or jogadas >= maxJogadas):
@@ -156,7 +167,7 @@ def game():
 game()
 resposta = input("Deseja Jogar Novamente?[y/n]")
 while resposta != "n" and resposta != "N":
-    LdFA.Delay(1)
+    Delay(1)
     reset()
     game()
     resposta = input("Deseja Jogar Novamente?[y/n]")
