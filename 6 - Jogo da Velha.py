@@ -39,7 +39,7 @@ def tela():
             elif element == "O" and indice == 2:
                 print(Fore.GREEN, f" {element}", Fore.RESET, end = "")
                 Fore.RESET
-            elif indice !=2 :
+            elif indice != 2 :
                 print(Fore.RESET, "    |", end = "")
             else:
                 print(Fore.RESET, "     ", end = "")
