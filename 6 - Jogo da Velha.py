@@ -25,7 +25,7 @@ def tela():
     os.system("cls")
     print(Fore.RESET, "     0     1     2")
     for i in range(3):
-        print(f" {i} |",end = "")
+        print(f" {i}  ",end = "")
         for j in range(3):
             if velha[i][j] == "X" and j != 2:
                 print(Fore.RED, f" {velha[i][j]}", Fore.RESET, "|", end = "")
@@ -34,14 +34,19 @@ def tela():
                 print(Fore.GREEN, f" {velha[i][j]}", Fore.RESET, "|", end = "")
                 Fore.RESET
             elif velha[i][j] == "X" and j == 2:
-                print(Fore.RED, f" {velha[i][j]}", Fore.RESET, "|", end = "")
+                print(Fore.RED, f" {velha[i][j]}", Fore.RESET, end = "")
                 Fore.RESET
             elif velha[i][j] == "O" and j == 2:
-                print(Fore.GREEN, f" {velha[i][j]}", Fore.RESET, "|", end = "")
+                print(Fore.GREEN, f" {velha[i][j]}", Fore.RESET, end = "")
                 Fore.RESET
-            else:
+            elif j !=2 :
                 print(Fore.RESET, "    |", end = "")
-        print("\n", end = "")
+            else:
+                print(Fore.RESET, "     ", end = "")
+        if i != 2:
+            print("\n     ----------------\n", end = "")
+        else:
+            print("")
     
 def verificaVitoriaLinha(s):
     global velha
