@@ -26,20 +26,20 @@ def tela():
     print(Fore.RESET, "     0     1     2")
     for i in range(3):
         print(f" {i}  ",end = "")
-        for j in range(3):
-            if velha[i][j] == "X" and j != 2:
-                print(Fore.RED, f" {velha[i][j]}", Fore.RESET, "|", end = "")
+        for indice,element in enumerate(velha[i]):
+            if element == "X" and indice != 2:
+                print(Fore.RED, f" {element}", Fore.RESET, "|", end = "")
                 Fore.RESET
-            elif velha[i][j] == "O" and j != 2:
-                print(Fore.GREEN, f" {velha[i][j]}", Fore.RESET, "|", end = "")
+            elif element == "O" and indice != 2:
+                print(Fore.GREEN, f" {element}", Fore.RESET, "|", end = "")
                 Fore.RESET
-            elif velha[i][j] == "X" and j == 2:
-                print(Fore.RED, f" {velha[i][j]}", Fore.RESET, end = "")
+            elif element == "X" and indice == 2:
+                print(Fore.RED, f" {element}", Fore.RESET, end = "")
                 Fore.RESET
-            elif velha[i][j] == "O" and j == 2:
-                print(Fore.GREEN, f" {velha[i][j]}", Fore.RESET, end = "")
+            elif element == "O" and indice == 2:
+                print(Fore.GREEN, f" {element}", Fore.RESET, end = "")
                 Fore.RESET
-            elif j !=2 :
+            elif indice !=2 :
                 print(Fore.RESET, "    |", end = "")
             else:
                 print(Fore.RESET, "     ", end = "")
